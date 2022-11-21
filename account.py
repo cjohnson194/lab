@@ -1,25 +1,35 @@
 class Account:
-    def __init__(self, name):
+    '''
+    A class representing details of an account
+    '''
+    def __init__(self, name: str, balance=0) -> None:
+        '''
+        Constructor to set name for account name and balance to 0
+        :param name: name of account
+        '''
 
         self.__account_name = name
         self.__account_balance = 0
 
-    def deposit(self, amount) -> float:
+    def deposit(self, amount: float) -> bool:
         '''
         Deposits Money into account
         :param amount: Amount being deposited
-        :return: returns account balance
+        :return: returns boolean True if money was deposited, false if not
         '''
-        self.__account_balance += amount
-        return self.__account_balance
+        if amount > 0:
+            self.__account_balance += amount
+            return True
+        else:
+            return False
 
-    def withdraw(self, amount) -> bool:
+    def withdraw(self, amount: float) -> bool:
         '''
         Withdraws money from account
         :param amount: amount being withdrawn
         :return: True if money withdrawn, false if not
         '''
-        if (amount > self.__account_balance) and (amount > 1):
+        if (amount < self.__account_balance) and (amount > 0):
             self.__account_balance -= amount
             return True
         else:
